@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ChromeProtocolRepro</title>
+    <script>
+      var electron = require('electron');
+      electron.ipcRenderer.on('open-url-event', function(e, url) {
+        console.log('Got url: ' + url);
+      });
+    </script>
+  </head>
+  <body>
+    <h1>ChromeProtocolRepro</h1>
+
+    <h3>Issue</h3>
+    <ul>
+      <li>Opening a custom protocol URL in Chrome will often cause the target desktop application to flash to the foreground for a brief moment. The target app should get focus and stay in the foreground, but instead Chrome stays in the foreground with focus.</li>
+      <li>This can only be observed with Chrome, on OSX El Capitan, with the desktop application already running. (Firefox, OSX Yosemite, Windows, etc. all seem to work fine)</li>
+      <li>Chrome version <code>48.0.2564.97 (64-bit)</code></li>
+    </ul>
+
+    <h3>Instructions to reproduce</h3>
+    <ul>
+      <li>Build and start this application (<code>./build && open out/ChromeProtocolRepro-darwin-x64/ChromeProtocolRepro.app</code>)</li>
+      <li>Open <code>chrome-protocol-repro:foo:bar</code> in Chrome</li>
+      <li>This app should flicker, but stay in the background, while Chrome keeps focus and stays in the foreground. (note: this is observed roughly 75% of the time)</li>
+      <li>Observe correct behavior opening protocol url in Firefox, or from the command line using <code>open chrome-protocol-repro:foo:bar</code></li>
+    </ul>
+  </body>
+</html>

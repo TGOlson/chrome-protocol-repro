@@ -1,0 +1,12 @@
+name="ChromeProtocolRepro"
+
+npm install
+
+./node_modules/.bin/electron-packager . "$name" \
+  --version=0.36.5 \
+  --platform=darwin \
+  --arch=x64 \
+  --protocol-name="$name" \
+  --protocol=chrome-protocol-repro \
+  --out=out \
+  --overwrite
