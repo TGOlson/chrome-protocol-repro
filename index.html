@@ -6,12 +6,16 @@
     <script>
       var electron = require('electron');
       electron.ipcRenderer.on('open-url-event', function(e, url) {
-        console.log('Got url: ' + url);
+        var msg = 'Opened protocol url: ' + url;
+        console.log(msg);
+        document.getElementById('ipc-url').textContent = msg;
       });
     </script>
   </head>
   <body>
     <h1>ChromeProtocolRepro</h1>
+
+    <h3 id="ipc-url"></h3>
 
     <h3>Issue</h3>
     <ul>
@@ -24,8 +28,9 @@
     <ul>
       <li>Build and start this application (<code>./build && open out/ChromeProtocolRepro-darwin-x64/ChromeProtocolRepro.app</code>)</li>
       <li>Open <code>chrome-protocol-repro:foo:bar</code> in Chrome</li>
-      <li>This app should flicker, but stay in the background, while Chrome keeps focus and stays in the foreground. (note: this is observed roughly 75% of the time)</li>
+      <li>This app should flicker, but stay in the background, while Chrome keeps focus and stays in the foreground. (note: this is observed roughly 25% of the time)</li>
       <li>Observe correct behavior opening protocol url in Firefox, or from the command line using <code>open chrome-protocol-repro:foo:bar</code></li>
     </ul>
+
   </body>
 </html>
