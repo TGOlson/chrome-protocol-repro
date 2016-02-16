@@ -1,5 +1,7 @@
 # ChromeProtocolRepro
 
+#### [Download Compiled App](https://s3.amazonaws.com/test.wagon/ChromeProtocolRepro.zip)
+
 ### Issue
 * Opening a custom protocol URL in Chrome will often cause the target desktop application to flash to the foreground for a brief moment. The target app should get focus and stay in the foreground, but instead Chrome stays in the foreground with focus.
 * This can only be observed with Chrome, on OSX El Capitan, with the desktop application already running. (Firefox, OSX Yosemite, etc. all seem to work fine)
